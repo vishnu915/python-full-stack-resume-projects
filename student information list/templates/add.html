@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add New Row</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='student.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h2>Add a new student info</h2>
+    </div>
+    <form action="/submit_new_row" method="post">
+        <!-- Label and input field for ref_number -->
+        <label for="column_a">StudentNo</label>
+        <input type="text" id="column_a" name="column_a" pattern="[1-9]\d{3,}" title="StudentNo must start from 1 and be at least 4 digits" required>
+
+        <!-- Label and input field for disclosure_group -->
+        <label for="column_b">Name</label>
+        <input type="text" id="column_b" name="column_b" pattern="^[A-Za-z\s]+$" title="Name cannot contain numbers" required>
+
+        <!-- Label and input field for title_en -->
+        <label for="column_c">Email</label>
+        <input type="email" id="column_c" name="column_c" title="Enter a valid email address" required>
+
+        <!-- Label and input field for owner_org -->
+        <label for="column_d">Phone</label>
+        <input type="text" id="column_d" name="column_d" pattern="\d{3}-\d{3}-\d{4}" title="Enter a phone number in xxx-xxx-xxxx format" required>
+
+        <!-- Submit button to add a new row -->
+        <input type="submit" value="Add Row">
+    </form>
+</body>
+</html>

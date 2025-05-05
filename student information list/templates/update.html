@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Record</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='student.css') }}">
+</head>
+<body>
+    <div class="header">
+        <h2>Update student info</h2>
+    </div>
+    <form method="POST" action="{{ url_for('update_record', record_id=record.StudentNo) }}">
+        <!-- Label and input field for ref_number, pre-filled with the existing value -->
+        <label for="column_a">StudentNo</label>
+        <input type="text" name="column_a" value="{{ record.StudentNo }}" pattern="[1-9]\d{3,}" title="StudentNo must start from 1 and be at least 4 digits"  required>
+
+        <!-- Label and input field for disclosure_group, pre-filled with the existing value -->
+        <label for="column_b">Name</label>
+        <input type="text" name="column_b" value="{{ record.Name }}" pattern="^[A-Za-z\s]+$" title="Name cannot contain numbers" required>
+
+        <!-- Label and input field for title_en, pre-filled with the existing value -->
+        <label for="column_c">Email</label>
+        <input type="email" name="column_c" value="{{ record.Email }}" title="Enter a valid email address" required>
+
+        <!-- Label and input field for owner_org, pre-filled with the existing value -->
+        <label for="column_d">Phone</label>
+        <input type="text" name="column_d" value="{{ record.Phone }}" pattern="\d{3}-\d{3}-\d{4}" title="Enter a phone number in xxx-xxx-xxxx format" required>
+
+        <!-- Submit button to update the record -->
+        <button type="submit">Update Record</button>
+    </form>
+</body>
+</html>

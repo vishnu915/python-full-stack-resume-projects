@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='student.css') }}">
+    <script src="{{ url_for('static', filename='student.js') }}"></script>
+
+</head>
+<body>
+    <div class="header">
+        <h2>Student Info</h2>
+         <!-- "Add New Rows" Button -->
+        <a href="{{ url_for('add_new_rows') }}"><button>Add New Rows</button></a>
+              <!-- Search inputs and button -->
+        <input type="text" id="searchStudentNo" placeholder="Search StudentNo...">
+        <input type="text" id="searchName" placeholder="Search Name...">
+        <input type="text" id="searchEmail" placeholder="Search Email...">
+        <input type="text" id="searchPhone" placeholder="Search Phone...">
+        <button onclick="searchTable()">Search</button>
+                <!-- Reset button -->
+        <button onclick="resetSearch()">Reset Search</button>
+    </div>
+    <table id="studentTable">
+        <thead>
+            <tr>
+                  <!-- Table Header Columns from the database column A, column B, column C, column D-->
+                <th class="col-a">StudentNo</th>
+                <th class="col-b">Name</th>
+                <th class="col-c">Email</th>
+                <th class="col-d">Phone</th>
+                <th>Actions</th>  <!-- Column header for action buttons -->
+            </tr>
+        </thead>
+        <tbody>
+             <!-- Iterate through records using a loop -->
+            {% for record in records%}
+            <tr>
+                <!-- Display record data from the database column A, column B, column C, column D, column E-->
+                <td>{{ record.StudentNo }}</td>
+                <td>{{ record.Name }}</td>
+                <td>{{ record.Email }}</td>
+                <td>{{ record.Phone }}</td>
+                <td>
+                    <!-- "Update" button with a link to the update_record_page route -->
+                    <a href="{{ url_for('update_record_page', record_id=record.StudentNo) }}"><button>Update</button></a>
+                    <!-- "Delete" button with a link to the delete_record route -->
+                    <a href="{{ url_for('delete_record', record_id=record.StudentNo) }}" class="delete-button">Delete</a>
+                </td>
+            </tr>
+            <!-- loop end-->
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
